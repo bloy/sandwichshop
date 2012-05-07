@@ -1,10 +1,34 @@
 @import "susy";
+@import "compass";
 
 // Grid
 
-$total-cols             : 12;
-$col-width              : 4em;
+$total-cols             : 16;
+$col-width              : 3em;
 $gutter-width           : 1em;
-$side-gutter-width      : $gutter-width;
+$side-gutter-width      : $gutter-width/2;
 
-$show-grid-backgrounds  : true;
+$show-grid-backgrounds  : false;
+
+@mixin grid_helper($red, $green, $blue) {
+  @if $show-grid-backgrounds {
+    background: rgba($red, $green, $blue, 0.5) !important;
+  }
+}
+
+// Colors
+
+$body_background: #666;
+$gradient_base: #018;
+$page_background: #fff;
+$nav_background: lighen(complement($gradient_base), 65%);
+$border_color: #000;
+$text_color: #000;
+$invert_text_color: $nav_background;
+$link_color: $gradient_base;
+$visited_color: $link_color;
+
+// Fonts
+
+$base-font-size: 14px;
+$base-line-height: 20px;

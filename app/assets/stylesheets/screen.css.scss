@@ -1,6 +1,36 @@
 @import "settings";
 
+// Typography
+
+@include establish-baseline;
+
+// Layout
+
 #page {
+  @include box-sizing(border-box);
   @include container;
   @include susy-grid-background;
+  & > header {
+    @include columns($total-cols);
+    @include alpha;
+    @include omega;
+    @include grid_helper(255, 255, 128);
+  }
+  & > footer {
+    @include columns($total-cols);
+    @include alpha;
+    @include omega;
+    @include grid_helper(255, 255, 128);
+  }
+  #sidebar {
+    @include columns(3);
+    @include alpha;
+    @include grid_helper(128, 255, 255);
+  }
+  #content {
+    @include columns($total-cols - 3);
+    @include omega;
+    @include grid_helper(255, 128, 255);
+  }
 }
+
