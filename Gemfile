@@ -23,6 +23,7 @@ end
 
 gem 'jquery-rails'
 gem 'simple_form'
+gem 'authlogic'
 
 group :development do
   gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
