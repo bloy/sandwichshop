@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Sandwichshop</title>
+  <title>Bob's Sandwich Shop | <%= yield :title %></title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
+  <link href='http://fonts.googleapis.com/css?family=Arvo:400,700,400italic|Gorditas' rel='stylesheet' type='text/css'>
   <!--[if lt IE 9]>
   <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
@@ -27,6 +28,7 @@
     </section>
 
     <section id="content">
+    <h1><%= yield :title %></h1>
     <%= yield %>
     </section>
 

@@ -1,13 +1,33 @@
 @import "settings";
+@import "compass";
+@import "susy";
+@import "compass/reset";
+
+@include reset-html5;
+@include global-reset;
 
 // Typography
 
 @include establish-baseline;
+body {
+  font-family: $base-font-family;
+}
+h1, h2, h3 {
+  font-family: $heading-font-family;
+}
+h1 {
+  font-size: $base-font-size * 1.5;
+}
+h2 {
+  font-size: $base-font-size * 1.2;
+}
+h3 {
+  font-size: $base-font-size * 1.1;
+}
 
 // Layout
 
 #page {
-  @include box-sizing(border-box);
   @include container;
   @include susy-grid-background;
   & > header {
@@ -34,3 +54,87 @@
   }
 }
 
+// Look and Feel
+
+@mixin background-gradient($base_color: $gradient_base) {
+  $start_color: lighten($base_color, 10%);
+  $chrome_color: lighten($base_color, 25%);
+  $middle_color: lighten($base_color, 15%);
+  @include background-image(
+    linear-gradient(
+      top,
+      $start_color 0%,
+      $middle_color 50%,
+      $chrome_color 50%,
+      $base_color 100%
+    )
+  );
+}
+
+@mixin stripe-gradient($background-image, $background_color,
+                       $offset: 11px,
+                       $base_color: $gradient_base) {
+  $start_color: lighten($base_color, 10%);
+  $chrome_color: lighten($base_color, 50%);
+  $middle_color: lighten($base_color, 15%);
+  background-color: $background_color;
+  @include background-image(
+    linear-gradient(
+      left,
+      $border_color 0%,
+      $start_color 1%,
+      $chrome_color 50%,
+      $middle_color 50%,
+      $base_color 99%,
+      $border_color 100%
+    ), $background-image
+  );
+  background-size: 7px 10px, 100% 100%;
+  background-repeat: repeat-y, repeat;
+  background-position: $offset 0, top left;
+}
+
+body {
+  background: image-url("dark_wood.png") $body_background;
+  margin: $gutter-width;
+}
+
+#page {
+  margin: 0 auto;
+  border: 2px solid $border_color;
+  @include border-radius(8px);
+  @include box-sizing(border-box);
+  @include box-shadow(0px 0px 3px 1px rgb(255, 255, 255));
+  @include stripe-gradient(image-url("ricepaper2.png"), $page_background);
+  & > header {
+    @include box-sizing(border-box);
+    @include background-gradient;
+    border-bottom: 2px solid $border_color;
+    margin-bottom: $gutter-width;
+    padding: 0 $gutter-width;
+    color: $invert_text_color;
+    h1 {
+      font-size: $base-font-size * 3;
+      line-height: $base-line-height * 3;
+    }
+  }
+  & > footer {
+    font-size: $base-font-size * 0.8;
+    border-top: 2px solid $border_color;
+    margin-top: $gutter-width;
+    padding: 0 $gutter-width;
+    color: $invert_text_color;
+    @include background-gradient;
+    @include box-sizing(border-box);
+  }
+}
+
+#sidebar {
+  nav {
+    margin: $gutter-width 5px;
+    border: 1px solid $border_color;
+    background: $nav_background;
+    background: fade-out($nav_background, 0.2);
+    padding: $gutter-width / 2;
+  }
+}
