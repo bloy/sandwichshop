@@ -21,6 +21,17 @@
     <nav>
     <ul>
       <li><%= link_to "Home", root_url %></li>
+      <% if logged_in? %>
+        <li> <%= link_to "Log Out",
+          {:controller => 'user_sessions', :action => 'destroy'},
+          :method => :delete
+        %>
+        </li>
+        <li> <%= link_to "Place Order", "#" %> </li>
+        <li> <%= link_to "View My Orders", "#" %> </li>
+      <% else %>
+        <%= link_to "Log In", new_user_session_path %>
+      <% end %>
     </ul>
     </nav>
     </section>
