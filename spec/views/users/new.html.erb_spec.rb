@@ -13,4 +13,8 @@ describe "users/new.html.erb" do
   it "contains instructions" do
     rendered.should =~ /Fill out the registration below/
   end
+
+  it "contains a link to log in" do
+    rendered.should =~ /Already have an account/
+  end
 end
