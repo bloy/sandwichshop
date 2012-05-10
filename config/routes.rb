@@ -3,6 +3,7 @@ Sandwichshop::Application.routes.draw do
   # first created -> highest priority.
 
   resource :user_session, :only => [:new, :create, :destroy]
+  resource :user, :except => [:destroy]
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'

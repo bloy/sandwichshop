@@ -14,8 +14,19 @@ shared_context "a logged in user", :user => :normal do
   include Authlogic::TestCase
   let(:current_user) { FactoryGirl.create(:user) }
   before(:each) do
-    controller.logger.debug("PONIES: logging in: " + current_user.inspect)
     activate_authlogic
     UserSession.create(current_user)
   end
+end
+
+shared_context "a controller method filtered by require_no_user",
+  :filter => :require_no_user do
+  it { should redirect_to(root_path) }
+  it { should set_the_flash[:notice].to(/must be logged out/) }
+end
+
+shared_context "a controller method filtered by require_user",
+  :filter => :require_user do
+  it { should redirect_to(new_user_session_path) }
+  it { should set_the_flash[:notice].to(/must be logged in/) }
 end
