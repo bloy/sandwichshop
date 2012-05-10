@@ -25,7 +25,7 @@ class Sandwich < ActiveRecord::Base
   belongs_to :bread
   belongs_to :sandwich_size
   has_and_belongs_to_many :toppings
-  attr_accessible :completed_at, :ordered_at
+  attr_accessible :ordered_at
   validates_presence_of :ordered_at, :ordered_by_id,
     :bread_id, :sandwich_size_id
 

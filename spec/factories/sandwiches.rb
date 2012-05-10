@@ -25,7 +25,7 @@ FactoryGirl.define do
     association :ordered_by, :factory => :user
     completed_at nil
     completed_by nil
-    bread
-    sandwich_size
+    association :bread
+    association :sandwich_size
   end
 end
