@@ -10,3 +10,8 @@ Bread.create([{ :name => 'White', :description => 'White Bread'},
               { :name => 'Wheat', :description => 'Wheat Bread'},
               { :name => 'Whole-Grain', :description => 'Whole Grain'},
               { :name => 'Gluten-free', :description => 'Gluten-free'}])
+
+SandwichSize.create([{ :name => '6-inch sub' },
+                     { :name => 'Footlong sub' },
+                     { :name => 'Sandwich Style' },
+                     { :name => 'Wrap' }])
