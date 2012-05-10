@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120510034836) do
+ActiveRecord::Schema.define(:version => 20120510041605) do
 
   create_table "breads", :force => true do |t|
     t.string "name",        :null => false
@@ -20,6 +20,25 @@ ActiveRecord::Schema.define(:version => 20120510034836) do
 
   create_table "sandwich_sizes", :force => true do |t|
     t.string "name", :null => false
+  end
+
+  create_table "sandwiches", :force => true do |t|
+    t.datetime "ordered_at",       :null => false
+    t.datetime "completed_at"
+    t.integer  "ordered_by_id",    :null => false
+    t.integer  "completed_by_id"
+    t.integer  "bread_id",         :null => false
+    t.integer  "sandwich_size_id", :null => false
+  end
+
+  add_index "sandwiches", ["bread_id"], :name => "index_sandwiches_on_bread_id"
+  add_index "sandwiches", ["completed_by_id"], :name => "index_sandwiches_on_completed_by_id"
+  add_index "sandwiches", ["ordered_by_id"], :name => "index_sandwiches_on_ordered_by_id"
+  add_index "sandwiches", ["sandwich_size_id"], :name => "index_sandwiches_on_sandwich_size_id"
+
+  create_table "sandwiches_toppings", :force => true do |t|
+    t.integer "sandwich_id", :null => false
+    t.integer "topping_id",  :null => false
   end
 
   create_table "topping_types", :force => true do |t|
