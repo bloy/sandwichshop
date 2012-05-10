@@ -65,4 +65,8 @@ describe User do
   it { should_not allow_mass_assignment_of(:last_login_ip) }
   it { should_not allow_mass_assignment_of(:created_at) }
   it { should_not allow_mass_assignment_of(:updated_at) }
+  it { should respond_to(:full_name) }
+  it "should give the full name when asked" do
+    user.full_name.should == "#{user.first_name} #{user.last_name}"
+  end
 end

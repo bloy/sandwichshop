@@ -1,2 +1,6 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<% content_for :title, 'Edit Profile' %>
+
+<p>Edit your profile below. Enter your new password and confirm to change your
+password.</p>
+
+<%= render :partial => 'form' %>

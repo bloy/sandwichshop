@@ -1,2 +1,13 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<% content_for :title, "My Profile" %>
+<table class="data">
+  <tr><th>Name</th><td><%= @user.full_name %></td></tr>
+  <tr>
+    <th>Last Login</th>
+    <td>
+      <%= l(@user.last_login_at, :format => :short) if @user.last_login_at %>
+    </th>
+  </tr>
+  <!-- TODO: link to orders -->
+</table>
+
+<%= link_to "Edit Profile", edit_user_path, :class => 'action' %>
