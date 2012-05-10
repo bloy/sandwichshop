@@ -4,6 +4,7 @@ Sandwichshop::Application.routes.draw do
 
   resource :user_session, :only => [:new, :create, :destroy]
   resource :user, :except => [:destroy]
+  resources :sandwiches
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
