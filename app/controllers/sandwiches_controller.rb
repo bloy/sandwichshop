@@ -2,6 +2,7 @@ class SandwichesController < ApplicationController
   before_filter :require_user
 
   def index
+    @sandwiches = Sandwich.find_all_by_ordered_by_id(current_user.id)
   end
 
   def show
@@ -43,8 +44,5 @@ class SandwichesController < ApplicationController
                       :status => :unprocessable_entity }
       end
     end
-  end
-
-  def my_orders
   end
 end

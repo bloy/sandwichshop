@@ -1,0 +1,9 @@
+<tr>
+  <td><%= sandwich.id %></td>
+  <td class="ordered_time"><%= l sandwich.ordered_at, :format => :short %></td>
+  <td><%= l sandwich.completed_at, :format => :short if sandwich.completed_at %></td>
+  <td>
+    <%= link_to "#{sandwich.sandwich_size.name} on #{sandwich.bread.name}",
+      sandwich %>
+  </td>
+</tr>

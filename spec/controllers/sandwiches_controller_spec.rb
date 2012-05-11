@@ -60,10 +60,20 @@ describe SandwichesController do
   end
 
   describe "GET 'index'" do
-    it "returns http success" do
-      pending
-      get 'index'
-      response.should be_success
+    describe "not logged in", :filter => :require_user do
+      before(:each) { get 'index' }
+    end
+
+    describe "logged in", :user => :normal do
+      before(:each) do
+        FactoryGirl.create(:sandwich)
+        FactoryGirl.create(:sandwich)
+        Sandwich.all.each{|i| i.update_attribute(:ordered_by_id, current_user.id)}
+        get 'index'
+      end
+      it { should respond_with(:success) }
+      it { should render_template(:index) }
+      it { should assign_to(:sandwiches).with(Sandwich.all) }
     end
   end
 

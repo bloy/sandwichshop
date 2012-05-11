@@ -1,0 +1,13 @@
+<table class="data">
+  <thead>
+    <tr>
+      <th class="id"> Order Id </th>
+      <th class="ordered_at"> Ordered </th>
+      <th class="completed_at"> Completed </th>
+      <th class="description"> Description </th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render :partial => 'sandwich', :collection => sandwiches %>
+  </tbody>
+</table>
