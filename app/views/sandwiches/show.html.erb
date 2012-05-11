@@ -1,2 +1,25 @@
-<h1>Sandwich#show</h1>
-<p>Find me in app/views/sandwich/show.html.erb</p>
+<% content_for :title, 'Order Details' %>
+<h2><%= "#{@sandwich.sandwich_size.name} on #{@sandwich.bread.name}" %></h2>
+
+<dl>
+  <dt>Ordered</dt>
+  <dd><%= l @sandwich.ordered_at, :format => :short %></dd>
+
+  <dt>Completed</dt>
+  <dd><%= l @sandwich.completed_at, :format => :short unless @sandwich.open? %></dd>
+
+  <dt>Bread</dt>
+  <dd><%= @sandwich.bread.name %></dd>
+</dl>
+
+<h3>Toppings</h3>
+
+<dl>
+  <% type = '' %>
+  <% @sandwich.toppings.map{|x| x.topping_type}.uniq.each do |type| %>
+    <dt><%= type.name %></dt>
+    <% @sandwich.toppings.select{|x| x.topping_type == type}.each do |topping| %>
+      <dd><%= topping.name %></dd>
+    <% end %>
+  <% end %>
+</dl>

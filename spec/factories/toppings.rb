@@ -11,8 +11,23 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :topping do
+  factory :topping, :aliases => [:turkey] do
     name "turkey"
-    topping_type ""
+    association :topping_type, :factory => :meat
+
+    factory :cheddar do
+      name "cheddar"
+      association :topping_type, :factory => :cheese
+    end
+
+    factory :lettuce do
+      name "lettuce"
+      association :topping_type, :factory => :veggie
+    end
+
+    factory :mustard do
+      name "mustard"
+      association :topping_type, :factory => :dressing
+    end
   end
 end

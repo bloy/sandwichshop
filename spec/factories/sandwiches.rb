@@ -21,11 +21,15 @@
 
 FactoryGirl.define do
   factory :sandwich do
-    ordered_at "2012-05-09 23:16:05"
+    ordered_at { 2.minutes.ago }
     association :ordered_by, :factory => :user
     completed_at nil
     completed_by nil
     association :bread
     association :sandwich_size
+
+    factory :sandwich_with_toppings do
+      toppings { [:turkey, :cheddar, :lettuce, :mustard].map{|x| FactoryGirl.create(x) } }
+    end
   end
 end

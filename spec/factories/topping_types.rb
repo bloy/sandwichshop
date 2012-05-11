@@ -8,7 +8,19 @@
 #
 
 FactoryGirl.define do
-  factory :topping_type do
+  factory :topping_type, :aliases => [:meat] do
     name "Meat"
+
+    factory :cheese do
+      name "Cheese"
+    end
+
+    factory :veggie do
+      name "Veggie"
+    end
+
+    factory :dressing do
+      name "Dressing"
+    end
   end
 end
