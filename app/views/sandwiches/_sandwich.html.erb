@@ -1,14 +1,16 @@
-<tr>
+<tr id="sandwich_<%= sandwich.id %>">
   <td><%= sandwich.id %></td>
   <td class="ordered_time">
-    <%= l sandwich.ordered_at, :format => :short %>
+    <% opts = {} %>
+    <% opts[:class] = 'timer' if sandwich.open? %>
+    <%= time_tag(sandwich.ordered_at, :short, opts) %>
   </td>
   <% if admin %>
     <td><%= sandwich.ordered_by.full_name %></td>
   <% end %>
   <% if closed %>
     <td>
-      <%= l sandwich.completed_at, :format => :short if sandwich.completed_at %>
+      <%= time_tag(sandwich.completed_at)  if sandwich.completed_at %>
     </td>
     <% if admin %>
       <td><%= sandwich.completed_by.full_name %></td>
