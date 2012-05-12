@@ -7,6 +7,7 @@ describe "sandwiches/closed.html.erb" do
     FactoryGirl.create(:completed_sandwich)
   ]}
   before(:each) do
+    view.stub(:admin? => true)
     assign(:sandwiches, sandwiches)
     render
   end

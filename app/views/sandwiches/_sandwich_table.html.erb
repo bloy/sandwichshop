@@ -1,13 +1,26 @@
+<% closed = sandwiches.any?{|x| !x.open?} %>
 <table class="data">
   <thead>
     <tr>
       <th class="id"> Order Id </th>
       <th class="ordered_at"> Ordered </th>
-      <th class="completed_at"> Completed </th>
+      <% if admin %>
+        <th class="ordered_by"> Ordered By </th>
+      <% end %>
+      <% if closed %>
+        <th class="completed_at"> Completed </th>
+        <% if admin %>
+          <th class="completed_by"> Completed By </th>
+        <% end %>
+      <% end %>
       <th class="description"> Description </th>
+      <% if admin %>
+        <th class="actions"> </th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
-    <%= render :partial => 'sandwich', :collection => sandwiches %>
+    <%= render :partial => 'sandwich', :collection => sandwiches,
+      :locals => {:closed => closed, :admin => admin} %>
   </tbody>
 </table>

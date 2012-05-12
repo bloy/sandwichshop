@@ -44,6 +44,15 @@ describe Sandwich do
     sandwich.status.should == 'OPEN'
   end
 
+  it "should have a complete method" do
+    sandwich.completed_at.should == nil
+    sandwich.completed_by.should == nil
+    admin = FactoryGirl.create(:admin)
+    sandwich.complete(admin)
+    sandwich.completed_at.should_not == nil
+    sandwich.completed_by.should == admin
+  end
+
   it "should know it is closed" do
     sandwich.completed_at = Time.now
     sandwich.completed_by = sandwich.ordered_by

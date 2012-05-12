@@ -2,8 +2,18 @@
 <h2><%= "#{@sandwich.sandwich_size.name} on #{@sandwich.bread.name}" %></h2>
 
 <dl>
+  <% if admin? %>
+    <dt>Status</dt>
+    <dd><%= @sandwich.status %></dd>
+  <% end %>
+
   <dt>Ordered</dt>
   <dd><%= l @sandwich.ordered_at, :format => :short %></dd>
+
+  <% if admin? %>
+    <dt>Ordered By</dt>
+    <dd><%= @sandwich.ordered_by.full_name %></dd>
+  <% end %>
 
   <dt>Completed</dt>
   <dd><%= l @sandwich.completed_at, :format => :short unless @sandwich.open? %></dd>

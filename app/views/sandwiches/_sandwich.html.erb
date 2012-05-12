@@ -1,9 +1,26 @@
 <tr>
   <td><%= sandwich.id %></td>
-  <td class="ordered_time"><%= l sandwich.ordered_at, :format => :short %></td>
-  <td><%= l sandwich.completed_at, :format => :short if sandwich.completed_at %></td>
+  <td class="ordered_time">
+    <%= l sandwich.ordered_at, :format => :short %>
+  </td>
+  <% if admin %>
+    <td><%= sandwich.ordered_by.full_name %></td>
+  <% end %>
+  <% if closed %>
+    <td>
+      <%= l sandwich.completed_at, :format => :short if sandwich.completed_at %>
+    </td>
+    <% if admin %>
+      <td><%= sandwich.completed_by.full_name %></td>
+    <% end %>
+  <% end %>
   <td>
     <%= link_to "#{sandwich.sandwich_size.name} on #{sandwich.bread.name}",
       sandwich %>
   </td>
+  <% if admin %>
+    <td class="actions">
+      &nbsp;
+    </td>
+  <% end %>
 </tr>
