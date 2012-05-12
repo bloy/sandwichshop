@@ -28,6 +28,17 @@ describe SandwichesController do
         it { should redirect_to root_path }
       end
     end
+
+    describe "admin can see other users sandwiches", :user => :admin do
+      before(:each) do
+        sandwich.ordered_by = FactoryGirl.create(:user)
+        sandwich.save
+        get 'show', :id => sandwich.id
+      end
+      it { should respond_with(:success) }
+      it { should render_template(:show) }
+      it { should assign_to(:sandwich).with(sandwich) }
+    end
   end
 
   describe "GET 'new'" do

@@ -15,7 +15,13 @@ class SandwichesController < ApplicationController
   end
 
   def show
-    @sandwich = Sandwich.find_by_id_and_ordered_by_id(params[:id], current_user.id)
+    if admin?
+      @sandwich = Sandwich.find_by_id(params[:id])
+    else
+      @sandwich = Sandwich.find_by_id_and_ordered_by_id(params[:id],
+                                                        current_user.id)
+    end
+
     respond_to do |format|
       if @sandwich
         format.html
