@@ -51,6 +51,9 @@ describe SandwichesController do
     describe "logged in", :user => :normal do
       before(:each) do
         attrs = FactoryGirl.attributes_for(:sandwich)
+        attrs.delete_if{|k,v|
+          [:ordered_at, :ordered_by, :completed_at, :completed_by].include?(k)
+        }
         attrs[:bread_id] = FactoryGirl.create(:bread).id
         attrs[:sandwich_size_id] = FactoryGirl.create(:sandwich_size).id
         post 'create', :sandwich => attrs

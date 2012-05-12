@@ -6,6 +6,10 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Emanuel', :city => cities.first)
 
+Topping.all.each{|x| x.destroy }
+ToppingType.all.each{|x| x.destroy }
+Bread.all.each{|x| x.destroy}
+SandwichSize.all.each{|x| x.destroy}
 Bread.create([{ :name => 'White', :description => 'White Bread'},
               { :name => 'Wheat', :description => 'Wheat Bread'},
               { :name => 'Whole-Grain', :description => 'Whole Grain'},

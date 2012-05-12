@@ -1,0 +1,25 @@
+<%= simple_form_for @sandwich do |f| %>
+  <%= f.error :base %>
+  <%= f.association :bread, :prompt => 'select bread...' %>
+  <%= f.association :sandwich_size, :prompt => 'select sandwich type...' %>
+  <fieldset>
+    <legend>Toppings</legend>
+    <fieldset>
+      <%= f.association :toppings, :collection => Topping.meats,
+        :as => :check_boxes, :label => 'Meat' %>
+    </fieldset>
+    <fieldset>
+      <%= f.association :toppings, :collection => Topping.cheeses,
+        :as => :check_boxes, :label => 'Cheese' %>
+    </fieldset>
+    <fieldset>
+      <%= f.association :toppings, :collection => Topping.veggies,
+        :as => :check_boxes, :label => 'Veggies' %>
+    </fieldset>
+    <fieldset>
+      <%= f.association :toppings, :collection => Topping.dressings,
+        :as => :check_boxes, :label => 'Dressing' %>
+    </fieldset>
+  </fieldset>
+  <%= f.button :submit, :value => 'Place Order' %>
+<% end %>

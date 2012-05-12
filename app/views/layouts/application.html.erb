@@ -28,7 +28,7 @@
         %>
         </li>
         <li><%= link_to "My Profile", user_path %></li>
-        <li> <%= link_to "Place Order", "#" %> </li>
+        <li> <%= link_to "Place Order", new_sandwich_path %> </li>
         <li> <%= link_to "View My Orders", sandwiches_path %> </li>
       <% else %>
         <li><%= link_to "Log In", new_user_session_path %></li>
