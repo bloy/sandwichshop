@@ -24,4 +24,16 @@ describe "Routing to sandwich" do
       :controller => "sandwiches", :action => "create"
     )
   end
+
+  it 'routes /sandwiches/open to sandwiches#open' do
+    { :get => '/sandwiches/open' }.should route_to(
+      :controller => 'sandwiches', :action => 'open'
+    )
+  end
+
+  it 'routes /sandwiches/closed to sandwiches#closed' do
+    { :get => '/sandwiches/closed' }.should route_to(
+      :controller => 'sandwiches', :action => 'closed'
+    )
+  end
 end

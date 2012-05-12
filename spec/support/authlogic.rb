@@ -19,6 +19,15 @@ shared_context "a logged in user", :user => :normal do
   end
 end
 
+shared_context "a logged in admin user", :user => :admin do
+  include Authlogic::TestCase
+  let(:current_user) { FactoryGirl.create(:admin) }
+  before(:each) do
+    activate_authlogic
+    UserSession.create(current_user)
+  end
+end
+
 shared_context "a controller method filtered by require_no_user",
   :filter => :require_no_user do
   it { should redirect_to(root_path) }
@@ -29,4 +38,10 @@ shared_context "a controller method filtered by require_user",
   :filter => :require_user do
   it { should redirect_to(new_user_session_path) }
   it { should set_the_flash[:notice].to(/must be logged in/) }
+end
+
+shared_context "a controller method filtered by require_admin",
+  :filter => :require_admin do
+  it { should redirect_to(root_url) }
+  it { should set_the_flash[:notice].to(/unauthorized access/) }
 end

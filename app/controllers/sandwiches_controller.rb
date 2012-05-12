@@ -1,8 +1,17 @@
 class SandwichesController < ApplicationController
   before_filter :require_user
+  before_filter :require_admin, :only => [:open, :closed]
 
   def index
     @sandwiches = Sandwich.find_all_by_ordered_by_id(current_user.id)
+  end
+
+  def open
+
+  end
+
+  def closed
+
   end
 
   def show

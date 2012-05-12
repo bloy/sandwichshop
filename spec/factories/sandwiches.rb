@@ -20,16 +20,19 @@
 #
 
 FactoryGirl.define do
-  factory :sandwich do
+  factory :sandwich, :aliases => [ :sandwich_with_toppings ] do
     ordered_at { 2.minutes.ago }
     association :ordered_by, :factory => :user
     completed_at nil
     completed_by nil
     association :bread
     association :sandwich_size
-
-    factory :sandwich_with_toppings do
-      toppings { [:turkey, :cheddar, :lettuce, :mustard].map{|x| FactoryGirl.create(x) } }
+    topping_ids {
+      [:turkey, :cheddar, :lettuce, :mustard].map{|x| FactoryGirl.create(x).id }
+    }
+    factory :completed_sandwich do
+      completed_at { 1.minute.ago }
+      association :completed_by, :factory => :admin
     end
   end
 end

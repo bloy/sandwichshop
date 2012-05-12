@@ -51,4 +51,17 @@ describe Sandwich do
     sandwich.should_not be_open
     sandwich.status.should == "CLOSED"
   end
+
+  describe "scopes" do
+    before(:each) do
+      FactoryGirl.create(:sandwich)
+      FactoryGirl.create(:completed_sandwich)
+    end
+    it "should have an open named scope" do
+      Sandwich.open.count.should == 1
+    end
+    it "should have a closed named scope" do
+      Sandwich.closed.count.should == 1
+    end
+  end
 end

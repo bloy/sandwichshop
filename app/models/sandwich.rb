@@ -29,6 +29,9 @@ class Sandwich < ActiveRecord::Base
   validates_presence_of :ordered_at, :ordered_by_id,
     :bread_id, :sandwich_size_id
 
+  scope :open, where(:completed_at => nil)
+  scope :closed, where("completed_at IS NOT NULL")
+
   def open?
     self.completed_at == nil
   end

@@ -38,6 +38,16 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def require_admin
+    require_user unless current_user
+    unless admin?
+      store_location
+      flash[:notice] = "unauthorized access attempted"
+      redirect_to root_path
+      return false
+    end
+  end
+
   def store_location
     session[:return_to] = request.url
   end

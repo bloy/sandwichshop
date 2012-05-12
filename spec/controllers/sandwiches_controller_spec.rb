@@ -80,4 +80,31 @@ describe SandwichesController do
     end
   end
 
+  describe "GET 'open'" do
+    describe "not logged in", :filter => :require_user do
+      before(:each) { get 'open' }
+    end
+
+    describe "not admin", :user => :normal, :filter => :require_admin do
+      before(:each) { get 'open'}
+    end
+
+    describe "admin", :user => :admin do
+      before(:each) { get 'open'}
+    end
+  end
+
+  describe "GET 'closed'" do
+    describe "not logged in", :filter => :require_user do
+      before(:each) { get 'closed' }
+    end
+
+    describe "not admin", :user => :normal, :filter => :require_admin do
+      before(:each) { get 'closed'}
+    end
+
+    describe "admin", :user => :admin do
+      before(:each) { get 'closed'}
+    end
+  end
 end
