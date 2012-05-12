@@ -39,4 +39,9 @@ class Sandwich < ActiveRecord::Base
   def status
     self.open? ? "OPEN" : "CLOSED"
   end
+
+  def complete(user)
+    self.completed_by = user
+    self.completed_at = Time.now
+  end
 end
