@@ -1,2 +1,8 @@
 <% content_for :title, "Welcome to Bob's!" %>
-<p>You need to be registered and logged in to place an order</p>
+<% if logged_in? %>
+  <p> You may now place an order or see your existing orders using the links on
+  the side.  </p>
+<% else %>
+  <p>You need to be registered and logged in to place an order</p>
+<% end %>
+
