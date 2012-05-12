@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20120508235324
+# Schema version: 20120512160041
 #
 # Table name: users
 #
@@ -19,6 +19,7 @@
 #  last_login_ip      :string(255)
 #  created_at         :datetime        not null
 #  updated_at         :datetime        not null
+#  admin              :boolean         default(FALSE), not null
 #
 # Indexes
 #
@@ -47,9 +48,12 @@ describe User do
   it { should have_db_column(:last_login_ip) }
   it { should have_db_column(:created_at) }
   it { should have_db_column(:updated_at) }
+  it { should have_db_column(:admin).of_type(:boolean).
+       with_options(:null => false) }
   it { should have_db_index(:email).unique(true) }
   it { should validate_presence_of :first_name }
   it { should validate_presence_of :last_name }
+  it { should validate_presence_of :email }
   it { should allow_mass_assignment_of(:first_name) }
   it { should allow_mass_assignment_of(:last_name) }
   it { should allow_mass_assignment_of(:email) }
@@ -65,6 +69,7 @@ describe User do
   it { should_not allow_mass_assignment_of(:last_login_ip) }
   it { should_not allow_mass_assignment_of(:created_at) }
   it { should_not allow_mass_assignment_of(:updated_at) }
+  it { should_not allow_mass_assignment_of(:admin) }
   it { should respond_to(:full_name) }
   it "should give the full name when asked" do
     user.full_name.should == "#{user.first_name} #{user.last_name}"

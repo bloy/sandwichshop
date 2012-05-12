@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20120508235324
+# Schema version: 20120512160041
 #
 # Table name: users
 #
@@ -19,6 +19,7 @@
 #  last_login_ip      :string(255)
 #  created_at         :datetime        not null
 #  updated_at         :datetime        not null
+#  admin              :boolean         default(FALSE), not null
 #
 # Indexes
 #
@@ -31,6 +32,7 @@ class User < ActiveRecord::Base
   acts_as_authentic
   validates_presence_of :first_name
   validates_presence_of :last_name
+  validates_presence_of :email
 
   def full_name
     "#{self.first_name} #{self.last_name}"

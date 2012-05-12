@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20120508235324
+# Schema version: 20120512160041
 #
 # Table name: users
 #
@@ -19,6 +19,7 @@
 #  last_login_ip      :string(255)
 #  created_at         :datetime        not null
 #  updated_at         :datetime        not null
+#  admin              :boolean         default(FALSE), not null
 #
 # Indexes
 #
@@ -32,7 +33,16 @@ FactoryGirl.define do
     sequence :email do |n|
       "charlie#{n}@example.com"
     end
+    admin false
     password "changeme"
     password_confirmation "changeme"
+    factory :admin do
+      first_name "Alice"
+      last_name "Admin"
+      sequence :email do |n|
+        "admin#{n}@example.com"
+      end
+      admin true
+    end
   end
 end

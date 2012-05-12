@@ -33,8 +33,9 @@ describe UsersController do
     describe "not logged in" do
       describe "correct data" do
         before(:each) {
-          controller.logger.debug("PONIES correct data")
-          post 'create', :user => FactoryGirl.attributes_for(:user) }
+          post 'create',
+            :user => FactoryGirl.attributes_for(:user).
+            reject{|k,v| k == :admin} }
         it { should redirect_to(user_path) }
         it { should set_the_flash[:notice].to(/successful/) }
       end
@@ -69,7 +70,9 @@ describe UsersController do
     end
 
     describe "logged in", :user => :normal do
-      before(:each) { put 'update', :user => FactoryGirl.attributes_for(:user) }
+      before(:each) { put 'update',
+                      :user => FactoryGirl.attributes_for(:user).
+                      reject{|k,v| k == :admin } }
       it { should redirect_to(user_path) }
       it { should set_the_flash[:notice].to(/Edit/) }
     end
