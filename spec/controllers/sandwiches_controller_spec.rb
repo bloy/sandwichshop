@@ -91,6 +91,9 @@ describe SandwichesController do
 
     describe "admin", :user => :admin do
       before(:each) { get 'open'}
+      it { should assign_to(:sandwiches).with(Sandwich.open) }
+      it { should render_template(:open) }
+      it { should respond_with(:success) }
     end
   end
 
@@ -105,6 +108,9 @@ describe SandwichesController do
 
     describe "admin", :user => :admin do
       before(:each) { get 'closed'}
+      it { should assign_to(:sandwiches).with(Sandwich.closed) }
+      it { should render_template(:closed) }
+      it { should respond_with(:success) }
     end
   end
 end

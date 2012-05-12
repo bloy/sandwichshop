@@ -7,11 +7,11 @@ class SandwichesController < ApplicationController
   end
 
   def open
-
+    @sandwiches = Sandwich.open
   end
 
   def closed
-
+    @sandwiches = Sandwich.closed
   end
 
   def show

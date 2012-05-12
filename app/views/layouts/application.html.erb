@@ -36,6 +36,17 @@
       <% end %>
     </ul>
     </nav>
+
+    <% if admin? %>
+      <nav>
+      <h1>Admin</h1>
+      <ul>
+        <li> <%= link_to "Open Orders", open_sandwiches_path %> </li>
+        <li> <%= link_to "Closed Orders", closed_sandwiches_path %> </li>
+      </ul>
+      </nav>
+    <% end %>
+
     </section>
 
     <section id="content">
