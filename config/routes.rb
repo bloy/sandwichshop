@@ -5,6 +5,9 @@ Sandwichshop::Application.routes.draw do
   resource :user_session, :only => [:new, :create, :destroy]
   resource :user, :except => [:destroy]
   resources :sandwiches do
+    member do
+      post 'close'
+    end
     collection do
       get 'open'
       get 'closed'

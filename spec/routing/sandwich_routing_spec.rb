@@ -36,4 +36,10 @@ describe "Routing to sandwich" do
       :controller => 'sandwiches', :action => 'closed'
     )
   end
+
+  it 'routes /sandwiches/:id/close to sandwiches#close' do
+    { :post => '/sandwiches/1/close' }.should route_to(
+      :controller => 'sandwiches', :action => 'close', :id => "1"
+    )
+  end
 end

@@ -124,4 +124,22 @@ describe SandwichesController do
       it { should respond_with(:success) }
     end
   end
+
+  describe "POST 'close'" do
+    describe "not logged in", :filter => :require_user do
+      before(:each) { post 'close' }
+    end
+
+    describe "not admin", :user => :normal, :filter => :require_admin do
+      before(:each) { post 'close'}
+    end
+
+    describe "admin", :user => :admin do
+      before(:each) { post 'close', :id => sandwich.id }
+      it { should redirect_to(open_sandwiches_path) }
+      it "should close the sandwich" do
+        Sandwich.find(sandwich.id).should_not be_open
+      end
+    end
+  end
 end

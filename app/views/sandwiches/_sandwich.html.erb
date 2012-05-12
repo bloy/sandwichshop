@@ -20,7 +20,11 @@
   </td>
   <% if admin %>
     <td class="actions">
-      &nbsp;
+      <% if sandwich.open? %>
+        <%= link_to "close", close_sandwich_path(sandwich), :method => :post %>
+      <% else %>
+        &nbsp;
+      <% end %>
     </td>
   <% end %>
 </tr>
