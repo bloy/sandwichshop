@@ -6,6 +6,9 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Emanuel', :city => cities.first)
 
+admin = User.create(:first_name => "Admin", :last_name => "Admin", :email => "admin@example.com", :password => 'changeme', :password_confirmation => 'changeme')
+admin.update_attribute(:admin, true)
+
 Topping.all.each{|x| x.destroy }
 ToppingType.all.each{|x| x.destroy }
 Bread.all.each{|x| x.destroy}
