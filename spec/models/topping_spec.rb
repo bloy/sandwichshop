@@ -16,4 +16,27 @@ describe Topping do
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:topping_type_id) }
   it { should belong_to(:topping_type) }
+
+  describe "scopes" do
+    before(:each) do
+      [:turkey, :cheddar, :lettuce, :mustard].each { |i| FactoryGirl.create(i) }
+      Topping.count.should == 4
+    end
+
+    it "should have a meats named scope" do
+      Topping.meats.count.should == 1
+    end
+
+    it "should have a cheeses named scope" do
+      Topping.cheeses.count.should == 1
+    end
+
+    it "should have a veggies named scope" do
+      Topping.veggies.count.should == 1
+    end
+
+    it "should have a dressings named scope" do
+      Topping.dressings.count.should == 1
+    end
+  end
 end

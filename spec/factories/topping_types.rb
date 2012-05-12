@@ -16,7 +16,7 @@ FactoryGirl.define do
     end
 
     factory :veggie do
-      name "Veggie"
+      name "Vegetable"
     end
 
     factory :dressing do
