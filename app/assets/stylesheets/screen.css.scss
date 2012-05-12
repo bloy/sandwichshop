@@ -136,5 +136,46 @@ body {
     background: $nav_background;
     background: fade-out($nav_background, 0.2);
     padding: $gutter-width / 2;
+    @include border-radius(3px);
+    a[href] {
+      color: #000;
+      font-weight: bold;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
+}
+
+dl {
+  dt {
+    font-weight: bold;
+    float: left;
+    padding-right: 1em;
+    &:after {
+      content: ":";
+    }
+  }
+}
+
+/* ----- SimpleForm Styles ----- */
+
+.simple_form {
+  label.control-label {
+    font-weight: bold;
+    display: block;
+    margin-top: $gutter-width/2;
+    &:after {
+      content: ":";
+    }
+  }
+  label.checkbox {
+    display: block;
+  }
+}
+
+fieldset.toppings {
+  float: left;
+  margin: 0 $gutter-width;
 }

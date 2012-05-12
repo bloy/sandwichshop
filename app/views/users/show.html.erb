@@ -1,13 +1,12 @@
 <% content_for :title, "My Profile" %>
-<table class="data">
-  <tr><th>Name</th><td><%= @user.full_name %></td></tr>
-  <tr>
-    <th>Last Login</th>
-    <td>
-      <%= l(@user.last_login_at, :format => :short) if @user.last_login_at %>
-    </th>
-  </tr>
-  <!-- TODO: link to orders -->
-</table>
+<dl>
+  <dt>Name</dt>
+  <dd><%= @user.full_name %></dd>
+
+  <dt>Last Login</dt>
+  <dd>
+  <%= l(@user.last_login_at, :format => :short) if @user.last_login_at %>
+  </dd>
+</dl>
 
 <%= link_to "Edit Profile", edit_user_path, :class => 'action' %>
