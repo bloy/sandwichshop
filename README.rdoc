@@ -1,27 +1,24 @@
-Project:  Build a Rails application for ordering sub sandwiches
+= Project
+ Build a demo Rails application for ordering sub sandwiches
+
+= Specs
 There should be two kinds of users
-1.  Customers
-     - Customers must register before ordering
-       - Required to provide a name and email address when registering
-     - Can order subs.
-       - Required to pick size and toppings.
-     - Can see their open orders
-       - show a timer for how long the order has been open
-        - Use AJAX polling to remove the order from the open order list when the order is closed by an employee in a different browser window.
-   - Can see a list of their previously closed orders
-2.  Employees
-   - Can see a list of all open orders for all customers
-   - Can mark orders as complete
-   - Can see a list of all completed orders for all customers
 
-Please store your code in a git repository.  You may use your preferred
-database and any open source libraries.  Please write tests if you are familiar
-with Rails testing, if you don't feel comfortable writing tests then please
-provide written english descriptions of what you would test.  While we will not
-be expecting a UI masterpiece,  it would be nice to apply at least a small
-amount of css styling to the site so that it isn't a blob of unformatted black
-text on a white background.
+  1. Customers
+    * Customers must register before ordering
+      * Required to provide a name and email address when registering
+    * Can order subs.
+      * Required to pick size and toppings.
+    * Can see their open orders
+      * show a timer for how long the order has been open
+      * Use AJAX polling to remove the order from the open order list when the order is closed by an employee in a different browser window.
+    * Can see a list of their previously closed orders
+  2. Employees
+     * Can see a list of all open orders for all customers
+     * Can mark orders as complete
+     * Can see a list of all completed orders for all customers
 
-Please let me know if you have any questions or if you do not think you will
-have sufficient time to complete this assignment.  Let's use 10:00PM on 5/14/12
-as the deadline.
+= Setup
+
+Make sure that +rake db:seed+ gets run, to pre-populate the sandwich types,
+bread types, and toppings. The admin user is +admin@example.com+ with a password of '+changeme+'.
