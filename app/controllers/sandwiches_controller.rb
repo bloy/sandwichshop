@@ -40,7 +40,25 @@ class SandwichesController < ApplicationController
     respond_to do |format|
       if @sandwich
         format.html
-        format.json { render :json => @sandwich }
+        format.xml { render :partial => 'sandwich',
+                     :formats => [:html],
+                     :locals => {
+                       :sandwich => @sandwich,
+                       :admin => false,
+                       :closed => true }
+        }
+        format.json { render :json => {
+          :obj => @sandwich,
+          :id => @sandwich.id,
+          :status => @sandwich.status,
+          :html => render_to_string(
+            :partial => 'sandwich',
+            :formats => [:html],
+            :locals => {
+              :sandwich => @sandwich,
+              :admin => false,
+              :closed => true })
+        } }
       else
         format.html { redirect_to root_path }
         format.json { render :json => {:error => true},

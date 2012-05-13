@@ -1,4 +1,6 @@
-<tr id="sandwich_<%= sandwich.id %>">
+<tr class="sandwich-row <%= sandwich.open? ? 'open' : 'closed'%>"
+  id="sandwich_<%= sandwich.id %>"
+  data-sandwich_id="<%= sandwich.id %>">
   <td><%= sandwich.id %></td>
   <td class="ordered_time">
     <% opts = {} %>

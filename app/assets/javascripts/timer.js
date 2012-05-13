@@ -1,7 +1,8 @@
 function updateTimers() {
   $('time.timer').each(
     function() {
-      ordered_at = Math.floor(new Date($(this).attr('datetime')).valueOf()/1000);
+      ordered_at = Math.floor(
+        new Date($(this).attr('datetime')).valueOf()/1000);
       now = Math.floor(new Date().valueOf()/1000);
       difference = now - ordered_at;
       seconds = difference % 60;

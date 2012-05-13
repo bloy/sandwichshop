@@ -1,10 +1,10 @@
 <% content_for :title, 'My Orders' %>
 <h2>My Open Orders</h2>
 <%= render :partial => 'sandwich_table',
-  :locals => {:admin => false, :sandwiches =>
+  :locals => {:admin => false, :closed => false, :sandwiches =>
                @sandwiches.select(&:open?).sort_by{|i| i.ordered_at} } %>
 
 <h2>My Previous Orders</h2>
 <%= render :partial => 'sandwich_table',
-  :locals => {:admin => false, :sandwiches =>
+  :locals => {:admin => false, :closed => true, :sandwiches =>
                @sandwiches.reject(&:open?).sort_by{|i| i.ordered_at} } %>

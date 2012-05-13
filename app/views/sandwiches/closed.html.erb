@@ -1,6 +1,6 @@
 <% content_for :title, 'Closed Orders' %>
 
 <%= render :partial => 'sandwich_table',
-  :locals => {:admin => true,
+  :locals => {:admin => true, :closed => true,
               :sandwiches => @sandwiches.sort_by{|i| i.ordered_at} } %>
 
